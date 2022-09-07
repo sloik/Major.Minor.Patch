@@ -1,2 +1,3 @@
-# Major.Minor.Patch
+# 🪖Major 👶Minor 🛠Patch
+
 Implementation of https://semver.org in Swift.
