@@ -1,5 +1,5 @@
 import XCTest
-@testable import MjorMinorPatch
+@testable import MajorMinorPatch
 
 final class MinorTests: XCTestCase {
 
