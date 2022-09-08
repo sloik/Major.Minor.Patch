@@ -56,7 +56,7 @@ final class MinorTests: XCTestCase {
         )
     }
 
-    func test_addition() {
+    func test_additive() {
 
         XCTAssertEqual(
             one + two,
