@@ -61,13 +61,13 @@ final class MinorTests: XCTestCase {
         XCTAssertEqual(
             one + two,
             three,
-            "1 + 2 != 3 got: \(one + two)"
+            "1 + 2 != 3"
         )
 
         XCTAssertEqual(
             three - two,
             one,
-            "3 - 2 != 1 got: \(three - two)"
+            "3 - 2 != 1"
         )
     }
 }
