@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 extension Semantic {
 
     public struct Identifier: Comparable {
