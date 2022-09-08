@@ -14,6 +14,10 @@ extension Semantic {
         public init?(rawValue: UInt) {
             self.rawValue = rawValue
         }
+
+        public init(_ value: UInt) {
+            self.rawValue = value
+        }
     }
 }
 
