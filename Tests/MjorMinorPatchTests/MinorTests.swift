@@ -76,5 +76,3 @@ fileprivate let zero  = Semantic.Minor.zero
 fileprivate let one   = zero.incremented
 fileprivate let two   = one.incremented
 fileprivate let three = two.incremented
-
-
