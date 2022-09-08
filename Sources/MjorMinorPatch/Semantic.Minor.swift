@@ -3,20 +3,24 @@ import Foundation
 
 extension Semantic {
 
-    public struct Minor: Comparable, ExpressibleByIntegerLiteral {
+    public struct Minor: Comparable, ExpressibleByIntegerLiteral, RawRepresentable {
 
         public static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.value == rhs.value
+            lhs.rawValue == rhs.rawValue
         }
 
         public static func < (lhs: Self, rhs: Self) -> Bool {
-            lhs.value < rhs.value
+            lhs.rawValue < rhs.rawValue
         }
 
-        let value: UInt
+        public let rawValue: UInt
 
         public init(integerLiteral value: UInt) {
-            self.value = value
+            self.rawValue = value
+        }
+
+        public init?(rawValue: UInt) {
+            self.rawValue = rawValue
         }
     }
 }
@@ -48,6 +52,12 @@ extension Semantic.Minor {
     }
 }
 
+// MARK: -- Pattern
+
+public func ~= (pattern: Semantic.Minor, value: Semantic.Minor) -> Bool {
+    pattern.rawValue == value.rawValue
+}
+
 //MARK: - AdditiveArithmetic
 
 extension Semantic.Minor: AdditiveArithmetic {
@@ -55,11 +65,11 @@ extension Semantic.Minor: AdditiveArithmetic {
     static public var zero: Semantic.Minor { 0 }
 
     public static func - (lhs: Semantic.Minor, rhs: Semantic.Minor) -> Semantic.Minor {
-        .init(integerLiteral: lhs.value - rhs.value)
+        .init(integerLiteral: lhs.rawValue - rhs.rawValue)
     }
 
     public static func + (lhs: Semantic.Minor, rhs: Semantic.Minor) -> Semantic.Minor {
-        .init(integerLiteral: lhs.value + rhs.value)
+        .init(integerLiteral: lhs.rawValue + rhs.rawValue)
     }
 
 }
