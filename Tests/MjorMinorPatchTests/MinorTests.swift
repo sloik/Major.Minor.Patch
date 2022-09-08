@@ -72,7 +72,7 @@ final class MinorTests: XCTestCase {
     }
 }
 
-fileprivate let zero  = Semantic.Minor.zero
-fileprivate let one   = zero.incremented
-fileprivate let two   = one.incremented
-fileprivate let three = two.incremented
+fileprivate let zero  = Semantic.Minor(integerLiteral: 0)
+fileprivate let one   = Semantic.Minor(integerLiteral: 1)
+fileprivate let two   = Semantic.Minor(integerLiteral: 2)
+fileprivate let three = Semantic.Minor(integerLiteral: 3)
