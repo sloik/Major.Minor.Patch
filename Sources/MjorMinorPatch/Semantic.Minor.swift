@@ -3,15 +3,7 @@ import Foundation
 
 extension Semantic {
 
-    public struct Minor: Comparable, ExpressibleByIntegerLiteral, RawRepresentable {
-
-        public static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.rawValue == rhs.rawValue
-        }
-
-        public static func < (lhs: Self, rhs: Self) -> Bool {
-            lhs.rawValue < rhs.rawValue
-        }
+    public struct Minor: ExpressibleByIntegerLiteral, RawRepresentable {
 
         public let rawValue: UInt
 
@@ -22,6 +14,31 @@ extension Semantic {
         public init?(rawValue: UInt) {
             self.rawValue = rawValue
         }
+    }
+}
+
+// MARK: - Comparable
+
+extension Semantic.Minor: Comparable {
+
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue == rhs.rawValue
+    }
+
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+
+    public static func <= (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue <= rhs.rawValue
+    }
+
+    public static func >= (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue >= rhs.rawValue
+    }
+
+    public static func > (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue > rhs.rawValue
     }
 }
 
