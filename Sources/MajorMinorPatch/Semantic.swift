@@ -13,7 +13,26 @@ public enum Semantic {
 
 }
 
-extension Semantic {
+// MARK: - Comparable
+
+extension Semantic: Comparable {
+    public static func < (lhs: Semantic, rhs: Semantic) -> Bool {
+
+        switch (lhs, rhs) {
+
+        case (.v(let lv), .v(let rv)):
+            return lv < rv
+            
+        default:
+            return false
+        }
+
+    }
+}
+
+// MARK: - API
+
+public extension Semantic {
 
     /// `Version` ignoring any identifiers and build metadata.
     var version: Version {
@@ -32,4 +51,19 @@ extension Semantic {
         }
     }
 
+}
+
+// MARK: - Common Versions
+
+public extension Semantic {
+
+    /// 0.0.0
+    static var ver_0_0_0: Semantic {
+        .v(ver: Version(major: 0, minor: 0, patch: 0))
+    }
+
+    /// 1.0.0
+    static var ver_1_0_0: Semantic {
+        .v(ver: Version(major: 1, minor: 0, patch: 0))
+    }
 }
