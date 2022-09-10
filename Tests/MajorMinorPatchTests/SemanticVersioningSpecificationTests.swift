@@ -92,6 +92,44 @@ final class SemanticVersioningSpecificationTests: XCTestCase {
         XCTAssert( ver_0_0_0_alpha < ver_2_1_1_alpha )
 
         XCTAssert( ver_1_0_0_alpha < ver_1_0_0_alpha_beta )
-        
+    }
+
+    /// https://semver.org/#spec-item-10
+    ///
+    /// Build metadata MUST be ignored when determining version precedence.
+    /// Thus two versions that differ only in the build metadata, have the same precedence.
+    func test_vib_vib_sameVersionWithMetadata_shouldBeEqual() {
+        // Arrange
+        let ver100_alpha_001 = Semantic.vib(
+            ver: ver_1_0_0.version,
+            ids: [.alpha],
+            build: [.init(string: "001")!]
+        )
+
+        let ver100_alpha_exp_sha_5114f85 = Semantic.vib(
+            ver: ver_1_0_0.version,
+            ids: [.alpha],
+            build: [.init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")!]
+        )
+
+        // Act & Assert
+        XCTAssertEqual(ver100_alpha_001, ver100_alpha_001)
+        XCTAssertEqual(ver100_alpha_exp_sha_5114f85, ver100_alpha_exp_sha_5114f85)
+
+        XCTAssertEqual(ver100_alpha_001, ver100_alpha_exp_sha_5114f85)
+
+        XCTAssertEqual(ver_0_0_0_b1, ver_0_0_0_b2)
+        XCTAssertEqual(ver_1_0_0_b1, ver_1_0_0_b2)
+        XCTAssertEqual(ver_2_0_0_b1, ver_2_0_0_b2)
+        XCTAssertEqual(ver_2_1_0_b1, ver_2_1_0_b2)
+        XCTAssertEqual(ver_2_1_1_b1, ver_2_1_1_b2)
+
+        XCTAssertEqual(ver_2_0_0_beta_b1, ver_2_0_0_beta_b2)
+        XCTAssertEqual(ver_2_1_0_beta_b1, ver_2_1_0_beta_b2)
+        XCTAssertEqual(ver_2_1_1_beta_b1, ver_2_1_1_beta_b2)
+
+        XCTAssertEqual(ver_2_0_0_alpha_beta_b1, ver_2_0_0_alpha_beta_b2)
+        XCTAssertEqual(ver_2_1_0_alpha_beta_b1, ver_2_1_0_alpha_beta_b2)
+        XCTAssertEqual(ver_2_1_1_alpha_beta_b1, ver_2_1_1_alpha_beta_b2)
     }
 }

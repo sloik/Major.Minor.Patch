@@ -10,5 +10,16 @@ extension Semantic {
         }
 
         let value: String
+
+        public init?(string: String) {
+
+            guard
+                isValidBuildIdentifier(string)
+            else {
+                return nil
+            }
+
+            self.value = string
+        }
     }
 }

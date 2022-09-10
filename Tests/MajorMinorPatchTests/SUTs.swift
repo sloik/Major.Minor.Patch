@@ -29,7 +29,7 @@ let patch2 = Semantic.Patch(integerLiteral: 2)
 let patch3 = Semantic.Patch(integerLiteral: 3)
 
 
-// MARK: - Alpha
+// MARK: - Alpha | Beta
 
 let ver_0_0_0_alpha = Semantic.vi(ver: ver_0_0_0.version, ids: [.alpha])
 let ver_1_0_0_alpha = Semantic.vi(ver: ver_1_0_0.version, ids: [.alpha])
@@ -48,3 +48,58 @@ let ver_1_0_0_alpha_beta = Semantic.vi(ver: ver_1_0_0.version, ids: [.alpha, .be
 let ver_2_0_0_alpha_beta = Semantic.vi(ver: ver_2_0_0.version, ids: [.alpha, .beta])
 let ver_2_1_0_alpha_beta = Semantic.vi(ver: ver_2_1_0.version, ids: [.alpha, .beta])
 let ver_2_1_1_alpha_beta = Semantic.vi(ver: ver_2_1_1.version, ids: [.alpha, .beta])
+
+
+// MARK: - Build
+
+let ver_0_0_0_b1 = Semantic.vb(ver: ver_0_0_0.version, build: [ .init(string: "1")! ])
+let ver_1_0_0_b1 = Semantic.vb(ver: ver_1_0_0.version, build: [ .init(string: "1")! ])
+
+let ver_2_0_0_b1 = Semantic.vb(ver: .init(major: 2, minor: 0, patch: 0), build: [ .init(string: "1")! ] )
+let ver_2_1_0_b1 = Semantic.vb(ver: .init(major: 2, minor: 1, patch: 0), build: [ .init(string: "1")! ] )
+let ver_2_1_1_b1 = Semantic.vb(ver: .init(major: 2, minor: 1, patch: 1), build: [ .init(string: "1")! ] )
+
+let ver_0_0_0_b2 = Semantic.vb(ver: ver_0_0_0.version, build: [ .init(string: "2")! ])
+let ver_1_0_0_b2 = Semantic.vb(ver: ver_1_0_0.version, build: [ .init(string: "2")! ])
+
+let ver_2_0_0_b2 = Semantic.vb(ver: .init(major: 2, minor: 0, patch: 0), build: [ .init(string: "2")! ] )
+let ver_2_1_0_b2 = Semantic.vb(ver: .init(major: 2, minor: 1, patch: 0), build: [ .init(string: "2")! ] )
+let ver_2_1_1_b2 = Semantic.vb(ver: .init(major: 2, minor: 1, patch: 1), build: [ .init(string: "2")! ] )
+
+
+// MARK: - Alpha | Beta | Build
+let ver_0_0_0_alpha_b1 = Semantic.vib(ver: ver_0_0_0.version, ids: [.alpha], build: [ .init(string: "1")! ])
+let ver_1_0_0_alpha_b1 = Semantic.vib(ver: ver_1_0_0.version, ids: [.alpha], build: [ .init(string: "1")! ])
+let ver_2_0_0_alpha_b1 = Semantic.vib(ver: ver_2_0_0.version, ids: [.alpha], build: [ .init(string: "1")! ])
+let ver_2_1_0_alpha_b1 = Semantic.vib(ver: ver_2_1_0.version, ids: [.alpha], build: [ .init(string: "1")! ])
+let ver_2_1_1_alpha_b1 = Semantic.vib(ver: ver_2_1_1.version, ids: [.alpha], build: [ .init(string: "1")! ])
+
+let ver_0_0_0_beta_b1 = Semantic.vib(ver: ver_0_0_0.version, ids: [.beta], build: [ .init(string: "1")! ])
+let ver_1_0_0_beta_b1 = Semantic.vib(ver: ver_1_0_0.version, ids: [.beta], build: [ .init(string: "1")! ])
+let ver_2_0_0_beta_b1 = Semantic.vib(ver: ver_2_0_0.version, ids: [.beta], build: [ .init(string: "1")! ])
+let ver_2_1_0_beta_b1 = Semantic.vib(ver: ver_2_1_0.version, ids: [.beta], build: [ .init(string: "1")! ])
+let ver_2_1_1_beta_b1 = Semantic.vib(ver: ver_2_1_1.version, ids: [.beta], build: [ .init(string: "1")! ])
+
+let ver_0_0_0_alpha_beta_b1 = Semantic.vib(ver: ver_0_0_0.version, ids: [.alpha, .beta], build: [ .init(string: "1")! ])
+let ver_1_0_0_alpha_beta_b1 = Semantic.vib(ver: ver_1_0_0.version, ids: [.alpha, .beta], build: [ .init(string: "1")! ])
+let ver_2_0_0_alpha_beta_b1 = Semantic.vib(ver: ver_2_0_0.version, ids: [.alpha, .beta], build: [ .init(string: "1")! ])
+let ver_2_1_0_alpha_beta_b1 = Semantic.vib(ver: ver_2_1_0.version, ids: [.alpha, .beta], build: [ .init(string: "1")! ])
+let ver_2_1_1_alpha_beta_b1 = Semantic.vib(ver: ver_2_1_1.version, ids: [.alpha, .beta], build: [ .init(string: "1")! ])
+
+let ver_0_0_0_alpha_b2 = Semantic.vib(ver: ver_0_0_0.version, ids: [.alpha], build: [ .init(string: "2")! ])
+let ver_1_0_0_alpha_b2 = Semantic.vib(ver: ver_1_0_0.version, ids: [.alpha], build: [ .init(string: "2")! ])
+let ver_2_0_0_alpha_b2 = Semantic.vib(ver: ver_2_0_0.version, ids: [.alpha], build: [ .init(string: "2")! ])
+let ver_2_1_0_alpha_b2 = Semantic.vib(ver: ver_2_1_0.version, ids: [.alpha], build: [ .init(string: "2")! ])
+let ver_2_1_1_alpha_b2 = Semantic.vib(ver: ver_2_1_1.version, ids: [.alpha], build: [ .init(string: "2")! ])
+
+let ver_0_0_0_beta_b2 = Semantic.vib(ver: ver_0_0_0.version, ids: [.beta], build: [ .init(string: "2")! ])
+let ver_1_0_0_beta_b2 = Semantic.vib(ver: ver_1_0_0.version, ids: [.beta], build: [ .init(string: "2")! ])
+let ver_2_0_0_beta_b2 = Semantic.vib(ver: ver_2_0_0.version, ids: [.beta], build: [ .init(string: "2")! ])
+let ver_2_1_0_beta_b2 = Semantic.vib(ver: ver_2_1_0.version, ids: [.beta], build: [ .init(string: "2")! ])
+let ver_2_1_1_beta_b2 = Semantic.vib(ver: ver_2_1_1.version, ids: [.beta], build: [ .init(string: "2")! ])
+
+let ver_0_0_0_alpha_beta_b2 = Semantic.vib(ver: ver_0_0_0.version, ids: [.alpha, .beta], build: [ .init(string: "2")! ])
+let ver_1_0_0_alpha_beta_b2 = Semantic.vib(ver: ver_1_0_0.version, ids: [.alpha, .beta], build: [ .init(string: "2")! ])
+let ver_2_0_0_alpha_beta_b2 = Semantic.vib(ver: ver_2_0_0.version, ids: [.alpha, .beta], build: [ .init(string: "2")! ])
+let ver_2_1_0_alpha_beta_b2 = Semantic.vib(ver: ver_2_1_0.version, ids: [.alpha, .beta], build: [ .init(string: "2")! ])
+let ver_2_1_1_alpha_beta_b2 = Semantic.vib(ver: ver_2_1_1.version, ids: [.alpha, .beta], build: [ .init(string: "2")! ])
