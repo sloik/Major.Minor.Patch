@@ -100,28 +100,36 @@ final class SemanticVersioningSpecificationTests: XCTestCase {
     /// Thus two versions that differ only in the build metadata, have the same precedence.
     func test_vib_vib_sameVersionWithMetadata_shouldBeEqual() {
         // Arrange
-        let a = Semantic.vib(ver: ver_1_0_0.version, ids: [.alpha], build: [.init(string: "001")!])
-        let b = Semantic.vb(ver: ver_1_0_0.version, build: [.init(string: "20130313144700")!])
-        let c = Semantic.vib(
+        let ver100_alpha_001 = Semantic.vib(
             ver: ver_1_0_0.version,
-            ids: [.beta],
+            ids: [.alpha],
+            build: [.init(string: "001")!]
+        )
+
+        let ver100_alpha_exp_sha_5114f85 = Semantic.vib(
+            ver: ver_1_0_0.version,
+            ids: [.alpha],
             build: [.init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")!]
         )
-        let d = Semantic.vb(ver: ver_1_0_0.version, build: [.init(string: "21AF26D3--117B344092BD")!])
 
         // Act & Assert
-        XCTAssertEqual(a, a)
-        XCTAssertEqual(a, b)
-        XCTAssertEqual(a, c)
-        XCTAssertEqual(a, d)
+        XCTAssertEqual(ver100_alpha_001, ver100_alpha_001)
+        XCTAssertEqual(ver100_alpha_exp_sha_5114f85, ver100_alpha_exp_sha_5114f85)
 
-        XCTAssertEqual(b, b)
-        XCTAssertEqual(b, c)
-        XCTAssertEqual(b, d)
+        XCTAssertEqual(ver100_alpha_001, ver100_alpha_exp_sha_5114f85)
 
-        XCTAssertEqual(c, c)
-        XCTAssertEqual(c, d)
+        XCTAssertEqual(ver_0_0_0_b1, ver_0_0_0_b2)
+        XCTAssertEqual(ver_1_0_0_b1, ver_1_0_0_b2)
+        XCTAssertEqual(ver_2_0_0_b1, ver_2_0_0_b2)
+        XCTAssertEqual(ver_2_1_0_b1, ver_2_1_0_b2)
+        XCTAssertEqual(ver_2_1_1_b1, ver_2_1_1_b2)
 
-        XCTAssertEqual(d, d)
+        XCTAssertEqual(ver_2_0_0_beta_b1, ver_2_0_0_beta_b2)
+        XCTAssertEqual(ver_2_1_0_beta_b1, ver_2_1_0_beta_b2)
+        XCTAssertEqual(ver_2_1_1_beta_b1, ver_2_1_1_beta_b2)
+
+        XCTAssertEqual(ver_2_0_0_alpha_beta_b1, ver_2_0_0_alpha_beta_b2)
+        XCTAssertEqual(ver_2_1_0_alpha_beta_b1, ver_2_1_0_alpha_beta_b2)
+        XCTAssertEqual(ver_2_1_1_alpha_beta_b1, ver_2_1_1_alpha_beta_b2)
     }
 }
