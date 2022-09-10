@@ -59,20 +59,16 @@ final class MinorTests: XCTestCase {
     func test_additive() {
 
         XCTAssertEqual(
-            one + two,
-            three,
+            minor1 + minor2,
+            minor3,
             "1 + 2 != 3"
         )
 
         XCTAssertEqual(
-            three - two,
-            one,
+            minor3 - minor2,
+            minor1,
             "3 - 2 != 1"
         )
     }
 }
 
-fileprivate let zero  = Semantic.Minor(integerLiteral: 0)
-fileprivate let one   = Semantic.Minor(integerLiteral: 1)
-fileprivate let two   = Semantic.Minor(integerLiteral: 2)
-fileprivate let three = Semantic.Minor(integerLiteral: 3)
