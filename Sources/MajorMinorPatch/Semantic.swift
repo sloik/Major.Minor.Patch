@@ -15,7 +15,26 @@ public enum Semantic {
 
 // MARK: - Comparable
 
-extension Semantic: Comparable {
+extension Semantic: Comparable, Equatable {
+
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        switch (lhs, rhs) {
+        case ( .v(let lv), .v(let rv) ):
+            print("🛤", #function, #line)
+            return lv == rv
+
+        case ( .vi(let lv, let li),  .vi(let rv, let ri) ):
+            print("🛤", #function, #line)
+            return lv == rv && li == ri
+
+        case ( .vib(let lv, let li, _), .vib(let rv, let ri, _)):
+            print("🛤", #function, #line)
+            return lv == rv && li == ri
+
+        default:
+            return false
+        }
+    }
 
     public static func < (lhs: Semantic, rhs: Semantic) -> Bool {
 
