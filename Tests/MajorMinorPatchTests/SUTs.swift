@@ -28,3 +28,11 @@ let patch1 = Semantic.Patch(integerLiteral: 1)
 let patch2 = Semantic.Patch(integerLiteral: 2)
 let patch3 = Semantic.Patch(integerLiteral: 3)
 
+
+// MARK: - Alpha
+
+let ver_0_0_0_alpha = Semantic.vi(ver: ver_0_0_0.version, ids: [.alpha])
+let ver_1_0_0_alpha = Semantic.vi(ver: ver_1_0_0.version, ids: [.alpha])
+let ver_2_0_0_alpha = Semantic.vi(ver: ver_2_0_0.version, ids: [.alpha])
+let ver_2_1_0_alpha = Semantic.vi(ver: ver_2_1_0.version, ids: [.alpha])
+let ver_2_1_1_alpha = Semantic.vi(ver: ver_2_1_1.version, ids: [.alpha])
