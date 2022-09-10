@@ -36,6 +36,7 @@ extension Semantic: Comparable, Equatable {
             return lv == rv && li == ri
 
         default:
+            print("🛤", #function, #line)
             return false
         }
     }
