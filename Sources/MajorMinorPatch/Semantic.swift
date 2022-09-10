@@ -99,6 +99,19 @@ public extension Semantic {
         }
     }
 
+    var identifiers: [Identifier]? {
+        switch self {
+        case .vi(_, let ids):
+            return ids
+
+        case .vib(_, let ids, _):
+            return ids
+
+        default:
+            return .none
+        }
+    }
+
 }
 
 // MARK: - Common Versions
