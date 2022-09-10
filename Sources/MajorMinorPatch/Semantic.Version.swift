@@ -4,9 +4,20 @@ import Foundation
 extension Semantic {
 
     public struct Version {
+
         let major: Major
         let minor: Minor
         let patch: Patch
+
+        public init(
+            major: Semantic.Major,
+            minor: Semantic.Minor,
+            patch: Semantic.Patch
+        ) {
+            self.major = major
+            self.minor = minor
+            self.patch = patch
+        }
     }
 
 }
