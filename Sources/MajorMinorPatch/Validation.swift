@@ -37,3 +37,11 @@ func isValidIdentifier(_ string: String) -> Bool {
 
     return true
 }
+
+/// Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].
+/// Identifiers MUST NOT be empty.
+func isValidBuildIdentifier(_ string: String) -> Bool {
+    
+    string.isEmpty == false &&
+    string.unicodeScalars.allSatisfy( validIdentifierCharacters.contains )
+}
