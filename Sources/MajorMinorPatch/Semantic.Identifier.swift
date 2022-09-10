@@ -19,14 +19,10 @@ extension [Semantic.Identifier]: Comparable {
 
     public static func < (lhs: [Element], rhs: [Element]) -> Bool {
 
-        let leftCount = lhs.count
-        let rightCount = rhs.count
+        let lefts = lhs.map(\.value).joined(separator: ".")
+        let rihts = rhs.map(\.value).joined(separator: ".")
 
-        if leftCount == rightCount {
-            return false
-        }
-
-        return leftCount < rightCount
+        return lefts < rihts
     }
 
 }
