@@ -3,14 +3,17 @@ import Foundation
 
 public enum Semantic {
 
+    /// Contains ony version.
     case v(ver: Version)
 
+    /// Contains version and identifiers.
     case vi(ver: Version, ids: [Identifier])
 
+    /// Contains version and build metadata.
     case vb(ver: Version, build: [Build])
 
+    /// Contains version, identifiers and build metadata.
     case vib(ver: Version, ids: [Identifier], build: [Build])
-
 }
 
 // MARK: - Comparable
