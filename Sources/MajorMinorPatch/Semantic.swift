@@ -41,7 +41,7 @@ extension Semantic: Comparable {
             print("🛤", #function, #line)
 
             if lv == rv {
-                return false
+                return li < ri
             }
 
             return lv < rv
