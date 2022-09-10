@@ -16,17 +16,40 @@ public enum Semantic {
 // MARK: - Comparable
 
 extension Semantic: Comparable {
+
     public static func < (lhs: Semantic, rhs: Semantic) -> Bool {
 
         switch (lhs, rhs) {
 
-        case (.v(let lv), .v(let rv)):
+        case ( .v(let lv), .v(let rv) ):
+            print("🛤", #function, #line)
+            return lv < rv
+
+        case ( .v(let lv), .vi(let rv, _) ):
+            print("🛤", #function, #line)
+            if lv == rv {
+                return false
+            }
+
+            return lv < rv
+
+        // 1.0.0-alpha < 1.0.0
+        case ( .vi, .v ):
+            return true
+
+        case ( .vi(let lv, let li),  .vi(let rv, let ri) ):
+            print("🛤", #function, #line)
+
+            if lv == rv {
+                return false
+            }
+
             return lv < rv
             
         default:
+            print("🛤", #function, #line)
             return false
         }
-
     }
 }
 
