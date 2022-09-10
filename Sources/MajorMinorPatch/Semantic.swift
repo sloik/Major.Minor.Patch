@@ -27,13 +27,8 @@ extension Semantic: Comparable {
 
         case ( .v(let lv), .vi(let rv, _) ):
             print("🛤", #function, #line)
-            if lv == rv {
-                return false
-            }
-
             return lv < rv
 
-        // 1.0.0-alpha < 1.0.0
         case ( .vi, .v ):
             return true
 
