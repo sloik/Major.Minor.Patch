@@ -20,7 +20,20 @@ fileprivate var validIdentifierCharacters: CharacterSet {
 ///  zeroes.
 func isValidIdentifier(_ string: String) -> Bool {
 
-    string.isEmpty == false &&
-    string.starts(with: "0") == false &&
-    string.unicodeScalars.allSatisfy( validIdentifierCharacters.contains )
+    // Identifiers MUST NOT be empty.
+    // Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-]
+    guard
+        string.isEmpty == false,
+        string.unicodeScalars.allSatisfy( validIdentifierCharacters.contains )
+    else {
+        return false
+    }
+
+    //  Numeric identifiers MUST NOT include leading zeroes.
+    let isNumeric = string.unicodeScalars.allSatisfy( digits10.contains )
+    if isNumeric && string.starts(with: "0") {
+        return false
+    }
+
+    return true
 }
