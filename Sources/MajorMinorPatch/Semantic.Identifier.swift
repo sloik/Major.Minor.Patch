@@ -9,3 +9,8 @@ extension Semantic {
         let value: String
     }
 }
+
+public extension Semantic.Identifier {
+    static var alpha: Self { .init(value: "alpha") }
+    static var beta: Self { .init(value: "beta") }
+}
