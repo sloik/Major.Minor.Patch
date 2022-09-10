@@ -51,14 +51,22 @@ final class SemanticVersioningSpecificationTests: XCTestCase {
         XCTAssert( ver_0_0_0_alpha < ver_2_1_0 )
         XCTAssert( ver_0_0_0_alpha < ver_2_1_1 )
 
-        XCTAssertFalse( ver_0_0_0_alpha < ver_0_0_0_alpha )
-        XCTAssert( ver_0_0_0_alpha < ver_1_0_0_alpha )
-        XCTAssert( ver_0_0_0_alpha < ver_2_1_0_alpha )
-        XCTAssert( ver_0_0_0_alpha < ver_2_1_1_alpha )
-
         XCTAssert( ver_0_0_0_alpha < ver_0_0_0 )
         XCTAssert( ver_1_0_0_alpha < ver_1_0_0 )
         XCTAssert( ver_2_1_0_alpha < ver_2_1_0 )
         XCTAssert( ver_2_1_1_alpha < ver_2_1_1 )
+
+        XCTAssertFalse( ver_0_0_0_alpha > ver_0_0_0 )
+        XCTAssertFalse( ver_1_0_0_alpha > ver_1_0_0 )
+        XCTAssertFalse( ver_2_1_0_alpha > ver_2_1_0 )
+        XCTAssertFalse( ver_2_1_1_alpha > ver_2_1_1 )
+    }
+
+    func test_vi_vi_comparison() {
+        
+        XCTAssertFalse( ver_0_0_0_alpha < ver_0_0_0_alpha )
+        XCTAssert( ver_0_0_0_alpha < ver_1_0_0_alpha )
+        XCTAssert( ver_0_0_0_alpha < ver_2_1_0_alpha )
+        XCTAssert( ver_0_0_0_alpha < ver_2_1_1_alpha )
     }
 }
