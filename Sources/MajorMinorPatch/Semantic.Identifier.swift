@@ -1,3 +1,4 @@
+import Foundation
 
 extension Semantic {
 
@@ -7,12 +8,23 @@ extension Semantic {
         }
 
         let value: String
+
+        public init?(string: String) {
+
+            guard
+                isValidIdentifier(string)
+            else {
+                return nil
+            }
+
+            self.value = string
+        }
     }
 }
 
 public extension Semantic.Identifier {
-    static var alpha: Self { .init(value: "alpha") }
-    static var beta: Self { .init(value: "beta") }
+    static var alpha: Self { .init(string: "alpha")! }
+    static var beta: Self { .init(string: "beta")! }
 }
 
 extension [Semantic.Identifier]: Comparable {
