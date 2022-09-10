@@ -27,6 +27,10 @@ extension Semantic: Comparable, Equatable {
             print("🛤", #function, #line)
             return lv == rv && li == ri
 
+        case ( .vb(let lv, _), .vb(ver: let rv, _) ):
+            print("🛤", #function, #line)
+            return lv == rv
+
         case ( .vib(let lv, let li, _), .vib(let rv, let ri, _)):
             print("🛤", #function, #line)
             return lv == rv && li == ri
