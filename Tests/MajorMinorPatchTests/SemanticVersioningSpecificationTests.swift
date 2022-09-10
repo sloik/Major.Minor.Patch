@@ -51,7 +51,7 @@ final class SemanticVersioningSpecificationTests: XCTestCase {
         XCTAssert( ver_0_0_0_alpha < ver_2_1_0 )
         XCTAssert( ver_0_0_0_alpha < ver_2_1_1 )
 
-        XCTAssert( ver_0_0_0_alpha < ver_0_0_0_alpha )
+        XCTAssertFalse( ver_0_0_0_alpha < ver_0_0_0_alpha )
         XCTAssert( ver_0_0_0_alpha < ver_1_0_0_alpha )
         XCTAssert( ver_0_0_0_alpha < ver_2_1_0_alpha )
         XCTAssert( ver_0_0_0_alpha < ver_2_1_1_alpha )
