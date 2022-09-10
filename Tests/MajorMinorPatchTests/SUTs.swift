@@ -22,7 +22,29 @@ let minor1 = Semantic.Minor(integerLiteral: 1)
 let minor2 = Semantic.Minor(integerLiteral: 2)
 let minor3 = Semantic.Minor(integerLiteral: 3)
 
+
 let patch0 = Semantic.Patch(integerLiteral: 0)
 let patch1 = Semantic.Patch(integerLiteral: 1)
 let patch2 = Semantic.Patch(integerLiteral: 2)
 let patch3 = Semantic.Patch(integerLiteral: 3)
+
+
+// MARK: - Alpha
+
+let ver_0_0_0_alpha = Semantic.vi(ver: ver_0_0_0.version, ids: [.alpha])
+let ver_1_0_0_alpha = Semantic.vi(ver: ver_1_0_0.version, ids: [.alpha])
+let ver_2_0_0_alpha = Semantic.vi(ver: ver_2_0_0.version, ids: [.alpha])
+let ver_2_1_0_alpha = Semantic.vi(ver: ver_2_1_0.version, ids: [.alpha])
+let ver_2_1_1_alpha = Semantic.vi(ver: ver_2_1_1.version, ids: [.alpha])
+
+let ver_0_0_0_beta = Semantic.vi(ver: ver_0_0_0.version, ids: [.beta])
+let ver_1_0_0_beta = Semantic.vi(ver: ver_1_0_0.version, ids: [.beta])
+let ver_2_0_0_beta = Semantic.vi(ver: ver_2_0_0.version, ids: [.beta])
+let ver_2_1_0_beta = Semantic.vi(ver: ver_2_1_0.version, ids: [.beta])
+let ver_2_1_1_beta = Semantic.vi(ver: ver_2_1_1.version, ids: [.beta])
+
+let ver_0_0_0_alpha_beta = Semantic.vi(ver: ver_0_0_0.version, ids: [.alpha, .beta])
+let ver_1_0_0_alpha_beta = Semantic.vi(ver: ver_1_0_0.version, ids: [.alpha, .beta])
+let ver_2_0_0_alpha_beta = Semantic.vi(ver: ver_2_0_0.version, ids: [.alpha, .beta])
+let ver_2_1_0_alpha_beta = Semantic.vi(ver: ver_2_1_0.version, ids: [.alpha, .beta])
+let ver_2_1_1_alpha_beta = Semantic.vi(ver: ver_2_1_1.version, ids: [.alpha, .beta])
