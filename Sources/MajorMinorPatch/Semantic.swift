@@ -59,12 +59,12 @@ extension Semantic: Comparable, Equatable {
         case ( .vi, .v ):
             return true
 
-        case ( .vi(let lv, let li),  .vi(let rv, let ri) ):
+        case ( .vi,  .vi ):
             print("🛤", #function, #line)
 
             return lhs.version == rhs.version
-                ? li < ri
-                : lv < rv
+                ? lhs.identifiers! < rhs.identifiers!
+                : lhs.version < rhs.version
 
         /// Build metadata MUST be ignored when determining version precedence.
         /// Thus two versions that differ only in the build metadata,
