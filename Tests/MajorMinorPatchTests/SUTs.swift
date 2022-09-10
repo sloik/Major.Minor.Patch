@@ -10,6 +10,7 @@ let ver_2_0_0 = Semantic.v(ver: .init(major: 2, minor: 0, patch: 0) )
 let ver_2_1_0 = Semantic.v(ver: .init(major: 2, minor: 1, patch: 0) )
 let ver_2_1_1 = Semantic.v(ver: .init(major: 2, minor: 1, patch: 1) )
 
+
 let major0 = Semantic.Major(integerLiteral: 0)
 let major1 = Semantic.Major(integerLiteral: 1)
 let major2 = Semantic.Major(integerLiteral: 2)
@@ -26,3 +27,4 @@ let patch0 = Semantic.Patch(integerLiteral: 0)
 let patch1 = Semantic.Patch(integerLiteral: 1)
 let patch2 = Semantic.Patch(integerLiteral: 2)
 let patch3 = Semantic.Patch(integerLiteral: 3)
+
