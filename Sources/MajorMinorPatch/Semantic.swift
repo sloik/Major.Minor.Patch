@@ -105,10 +105,10 @@ public extension Semantic {
     var identifiers: [Identifier]? {
         switch self {
         case .vi(_, let ids):
-            return ids
+            return ids.isEmpty ? .none : ids
 
         case .vib(_, let ids, _):
-            return ids
+            return ids.isEmpty ? .none : ids
 
         default:
             return .none
