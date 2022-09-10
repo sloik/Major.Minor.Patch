@@ -22,21 +22,21 @@ extension Semantic: Comparable, Equatable {
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
-        case ( .v(let lv), .v(let rv) ):
+        case ( .v, .v ):
             print("🛤", #function, #line)
-            return lv == rv
+            return lhs.version == rhs.version
 
-        case ( .vi(let lv, let li),  .vi(let rv, let ri) ):
+        case ( .vi, .vi):
             print("🛤", #function, #line)
-            return lv == rv && li == ri
+            return lhs.version == rhs.version && lhs.identifiers! == rhs.identifiers!
 
-        case ( .vb(let lv, _), .vb(ver: let rv, _) ):
+        case ( .vb, .vb ):
             print("🛤", #function, #line)
-            return lv == rv
+            return lhs.version == rhs.version
 
-        case ( .vib(let lv, let li, _), .vib(let rv, let ri, _)):
+        case ( .vib, .vib):
             print("🛤", #function, #line)
-            return lv == rv && li == ri
+            return lhs.version == rhs.version && lhs.identifiers! == rhs.identifiers!
 
         default:
             print("🛤", #function, #line)
@@ -48,13 +48,13 @@ extension Semantic: Comparable, Equatable {
 
         switch (lhs, rhs) {
 
-        case ( .v(let lv), .v(let rv) ):
+        case ( .v, .v ):
             print("🛤", #function, #line)
-            return lv < rv
+            return lhs.version < rhs.version
 
-        case ( .v(let lv), .vi(let rv, _) ):
+        case ( .v, .vi ):
             print("🛤", #function, #line)
-            return lv < rv
+            return lhs.version < rhs.version
 
         case ( .vi, .v ):
             return true
@@ -62,11 +62,9 @@ extension Semantic: Comparable, Equatable {
         case ( .vi(let lv, let li),  .vi(let rv, let ri) ):
             print("🛤", #function, #line)
 
-            if lv == rv {
-                return li < ri
-            }
-
-            return lv < rv
+            return lhs.version == rhs.version
+                ? li < ri
+                : lv < rv
 
         /// Build metadata MUST be ignored when determining version precedence.
         /// Thus two versions that differ only in the build metadata,
