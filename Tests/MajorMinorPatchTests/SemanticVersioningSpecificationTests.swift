@@ -91,6 +91,7 @@ final class SemanticVersioningSpecificationTests: XCTestCase {
         XCTAssert( ver_0_0_0_alpha < ver_2_1_0_alpha )
         XCTAssert( ver_0_0_0_alpha < ver_2_1_1_alpha )
 
+        XCTAssert( ver_1_0_0_alpha < ver_1_0_0_alpha_beta )
         
     }
 }
