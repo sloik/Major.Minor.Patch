@@ -47,12 +47,49 @@ extension Semantic.Version {
     }
 }
 
+extension Semantic.Identifier {
+
+    static var parser: AnyParser<Substring, Semantic.Identifier?> {
+
+        Prefix(
+            while: { $0 != "." }
+        )
+        .map { (str: Substring) in
+            Semantic.Identifier(string: String(str))
+        }
+        .eraseToAnyParser()
+    }
+}
+
+var versionParserWithIdentifiers: AnyParser<Substring, Semantic> {
+
+    Parse {
+        versionParser
+        "-"
+        Many {
+            Semantic.Identifier.parser
+        } separator: {
+            "."
+        }
+    }
+    .map { (sem: Semantic, ids: [Semantic.Identifier?]) in
+
+        let compacted: [Semantic.Identifier] = ids.compactMap { $0 }
+
+        return Semantic.vi(ver: sem.version, ids: compacted)
+    }
+    .eraseToAnyParser()
+}
+
+var versionParser: AnyParser<Substring, Semantic> {
+    Semantic.Version.parser.map( Semantic.v(ver:) ).eraseToAnyParser()
+}
+
 extension Semantic {
     static var parser: AnyParser<Substring, Semantic> {
         OneOf {
-            Semantic.Version.parser
-        }.map { (v: Version) in
-            Semantic.v(ver: v)
+            versionParserWithIdentifiers
+            versionParser
         }
         .eraseToAnyParser()
     }
