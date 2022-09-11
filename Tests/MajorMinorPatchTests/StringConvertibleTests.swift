@@ -47,4 +47,31 @@ final class PrintingTests: XCTestCase {
         )
     }
 
+    func test_version_printing() throws {
+
+        XCTAssertEqual( ver_2_1_1.version.description, "2.1.1" )
+        XCTAssertEqual(
+            Semantic.Version( ver_2_1_1.version.description ),
+            ver_2_1_1.version
+        )
+
+        XCTAssertEqual( ver_2_1_0.version.description, "2.1.0" )
+        XCTAssertEqual(
+            Semantic.Version( ver_2_1_0.version.description ),
+            ver_2_1_0.version
+        )
+
+        XCTAssertEqual( ver_2_0_0.version.description, "2.0.0" )
+        XCTAssertEqual(
+            Semantic.Version( ver_2_0_0.version.description ),
+            ver_2_0_0.version
+        )
+
+        XCTAssertEqual( ver_0_0_0.version.description, "0.0.0" )
+        XCTAssertEqual(
+            Semantic.Version( ver_0_0_0.version.description ),
+            ver_0_0_0.version
+        )
+    }
+
 }
