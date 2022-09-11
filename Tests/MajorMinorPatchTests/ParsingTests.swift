@@ -154,6 +154,30 @@ final class ParsingTests: XCTestCase {
                     line: test.line
                 )
             }
+
+            // When comparing for equality specification says
+            // that build metadata should be ignored. But in this
+            // case we need to check if parsing works.
+            if let expectedMetadata = test.expected.metadata {
+
+                XCTAssertNotNil(
+                    result?.metadata,
+                    "Did not parse expected metadata for: \"\(test.input)\"",
+                    file: test.file,
+                    line: test.line
+                )
+
+                if let resultMetadata = result?.metadata {
+                    XCTAssertEqual(
+                        resultMetadata,
+                        expectedMetadata,
+                        file: test.file,
+                        line: test.line
+                    )
+                }
+
+            }
+
         }
     }
 
