@@ -19,6 +19,7 @@ final class ValidationTests: XCTestCase {
         
         // Numeric identifiers MUST NOT include leading zeroes,
         // so alphanumeric may contain them.
+        XCTAssertTrue( isValidIdentifier("0") )
         XCTAssertTrue( isValidIdentifier("0alpha") )
         XCTAssertTrue( isValidIdentifier("00alpha") )
         XCTAssertTrue( isValidIdentifier("000alpha") )
@@ -32,7 +33,6 @@ final class ValidationTests: XCTestCase {
 
         // Invalid
         XCTAssertFalse( isValidIdentifier("") )
-        XCTAssertFalse( isValidIdentifier("0") )
         XCTAssertFalse( isValidIdentifier("00") )
         XCTAssertFalse( isValidIdentifier("000") )
         XCTAssertFalse( isValidIdentifier("01") )
