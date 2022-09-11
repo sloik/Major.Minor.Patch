@@ -88,16 +88,30 @@ extension Semantic.Metadata {
     }
 }
 
-var versionParserWithBuildMetadata: AnyParser<Substring, Semantic> {
+var arrayOfIdentifiersParser: AnyParser<Substring, [Semantic.Identifier]> {
+    Many {
+        Semantic.Identifier.parser
+    } separator: {
+        "."
+    }
+    .eraseToAnyParser()
+}
+
+var arrayOfMetdataParser: AnyParser<Substring, [Semantic.Metadata]> {
+    Many {
+        Semantic.Metadata.parser
+    } separator: {
+        "."
+    }
+    .eraseToAnyParser()
+}
+
+var versionMetadataParser: AnyParser<Substring, Semantic> {
 
     Parse {
         versionParser
         "+"
-        Many {
-            Semantic.Metadata.parser
-        } separator: {
-            "."
-        }
+        arrayOfMetdataParser
     }
     .map { (sem: Semantic, metadata: [Semantic.Metadata]) -> Semantic in
         Semantic.vb(ver: sem.version, build: metadata)
@@ -105,16 +119,12 @@ var versionParserWithBuildMetadata: AnyParser<Substring, Semantic> {
     .eraseToAnyParser()
 }
 
-var versionParserWithIdentifiers: AnyParser<Substring, Semantic> {
+var versionIdentifiersParser: AnyParser<Substring, Semantic> {
 
     Parse {
         versionParser
         "-"
-        Many {
-            Semantic.Identifier.parser
-        } separator: {
-            "."
-        }
+        arrayOfIdentifiersParser
     }
     .map { (sem: Semantic, ids: [Semantic.Identifier]) -> Semantic in
         Semantic.vi(ver: sem.version, ids: ids)
@@ -129,8 +139,8 @@ var versionParser: AnyParser<Substring, Semantic> {
 extension Semantic {
     static var parser: AnyParser<Substring, Semantic> {
         OneOf {
-            versionParserWithBuildMetadata
-            versionParserWithIdentifiers
+            versionMetadataParser
+            versionIdentifiersParser
             versionParser
         }
         .eraseToAnyParser()
