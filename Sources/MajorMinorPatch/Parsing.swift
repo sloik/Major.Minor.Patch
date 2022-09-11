@@ -72,10 +72,7 @@ var arrayOfIdentifiersParser: AnyParser<Substring, [Semantic.Identifier]> {
     Many {
         Semantic.Identifier.parser
     } separator: {
-        OneOf {
-            "."
-            "+"
-        }
+        "."
     }
     .eraseToAnyParser()
 }
@@ -105,9 +102,7 @@ var arrayOfMetdataParser: AnyParser<Substring, [Semantic.Metadata]> {
         Semantic.Metadata.parser
     } separator: {
         "."
-    } terminator: {
-        End()
-    }
+    } 
     .eraseToAnyParser()
 }
 
