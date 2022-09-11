@@ -113,6 +113,18 @@ public extension Semantic {
         }
     }
 
+    var metadata: [Metadata]? {
+        switch self {
+        case .vb(_, let build):
+            return build
+        case .vib(_, _, let build):
+            return build
+
+        default:
+            return .none
+        }
+    }
+
 }
 
 // MARK: - Common Versions
