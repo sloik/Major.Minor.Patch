@@ -129,6 +129,7 @@ var versionParser: AnyParser<Substring, Semantic> {
 extension Semantic {
     static var parser: AnyParser<Substring, Semantic> {
         OneOf {
+            versionParserWithBuildMetadata
             versionParserWithIdentifiers
             versionParser
         }
