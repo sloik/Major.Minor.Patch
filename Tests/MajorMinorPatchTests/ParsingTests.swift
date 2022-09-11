@@ -53,6 +53,14 @@ final class ParsingTests: XCTestCase {
                         ids: [.init(string: "0")!, .init(string: "3")!, .init(string: "7")!]
                     )
                 ),
+            newCase()
+                .setInput( "1.0.0-0")
+                .setExpected(
+                    .vi(
+                        ver: ver_1_0_0.version,
+                        ids: [.init(string: "0")!]
+                    )
+                ),
 
         ]
 
@@ -78,6 +86,29 @@ final class ParsingTests: XCTestCase {
                 )
             }
         }
+    }
+
+    func test_parseString_forInvalidStrings_shouldReturnNone() {
+
+        // Arrange
+
+        let invalidStrings: [String] = [
+            "Andrzej",
+            "1.0.0-01",
+            "1.0.0-01.alpha",
+        ]
+
+        // Act & Assert
+        
+        invalidStrings
+            .forEach { (invalidString: String) in
+
+                XCTAssertNil(
+                    parse(string: invalidString),
+                    "Should not parse invalid version string: \"\(invalidString)\""
+                )
+            }
+
     }
 }
 
