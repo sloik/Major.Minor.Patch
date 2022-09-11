@@ -26,6 +26,32 @@ final class ParsingTests: XCTestCase {
                 .setInput( "1.1.1")
                 .setExpected( .v(ver: .init(major: 1, minor: 1, patch: 1)) ),
 
+            newCase()
+                .setInput( "1.0.0-alpha")
+                .setExpected( .vi(ver: ver_1_0_0.version, ids: [.alpha]) ),
+            newCase()
+                .setInput( "1.0.0-beta")
+                .setExpected( .vi(ver: ver_1_0_0.version, ids: [.beta]) ),
+            newCase()
+                .setInput( "1.0.0-alpha.beta")
+                .setExpected( .vi(ver: ver_1_0_0.version, ids: [.alpha, .beta]) ),
+            newCase()
+                .setInput( "1.0.0-alpha.1")
+                .setExpected(
+                    .vi(
+                        ver: ver_1_0_0.version,
+                        ids: [.alpha, .init(string: "1")!]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0-0.3.7")
+                .setExpected(
+                    .vi(
+                        ver: ver_1_0_0.version,
+                        ids: [.init(string: "0")!, .init(string: "3")!, .init(string: "7")!]
+                    )
+                ),
+
         ]
 
         // Act & Assert
