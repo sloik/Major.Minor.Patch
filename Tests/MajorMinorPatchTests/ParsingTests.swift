@@ -62,6 +62,32 @@ final class ParsingTests: XCTestCase {
                     )
                 ),
 
+            // version and metadata
+            newCase()
+                .setInput( "1.0.0+001" )
+                .setExpected(
+                    .vb(
+                        ver: ver_1_0_0.version,
+                        build: [ .init(string: "001")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0+20130313144700" )
+                .setExpected(
+                    .vb(
+                        ver: ver_1_0_0.version,
+                        build: [ .init(string: "20130313144700")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0+exp.sha.5114f85" )
+                .setExpected(
+                    .vb(
+                        ver: ver_1_0_0.version,
+                        build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
+                    )
+                ),
+
         ]
 
         // Act & Assert
