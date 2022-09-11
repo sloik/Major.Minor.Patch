@@ -16,6 +16,15 @@ final class ParsingTests: XCTestCase {
             newCase()
                 .setInput( "1.0.0")
                 .setExpected( .v(ver: .init(major: 1, minor: 0, patch: 0)) ),
+            newCase()
+                .setInput( "1.0.1")
+                .setExpected( .v(ver: .init(major: 1, minor: 0, patch: 1)) ),
+            newCase()
+                .setInput( "1.1.0")
+                .setExpected( .v(ver: .init(major: 1, minor: 1, patch: 0)) ),
+            newCase()
+                .setInput( "1.1.1")
+                .setExpected( .v(ver: .init(major: 1, minor: 1, patch: 1)) ),
 
         ]
 
