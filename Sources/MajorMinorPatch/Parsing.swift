@@ -49,14 +49,21 @@ extension Semantic.Version {
 
 extension Semantic.Identifier {
 
-    static var parser: AnyParser<Substring, Semantic.Identifier?> {
+    static var parser: AnyParser<Substring, Semantic.Identifier> {
 
         Prefix(
             while: { $0 != "." }
         )
-        .map { (str: Substring) in
-            Semantic.Identifier(string: String(str))
-        }
+        .map(
+            AnyConversion(
+                apply: { (sub: Substring) -> Semantic.Identifier? in
+                    Semantic.Identifier(string: String(sub))
+                },
+                unapply: { (identifier: Semantic.Identifier) -> Substring? in
+                    identifier.value[...]
+                }
+            )
+        )
         .eraseToAnyParser()
     }
 }
@@ -72,11 +79,8 @@ var versionParserWithIdentifiers: AnyParser<Substring, Semantic> {
             "."
         }
     }
-    .map { (sem: Semantic, ids: [Semantic.Identifier?]) in
-
-        let compacted: [Semantic.Identifier] = ids.compactMap { $0 }
-
-        return Semantic.vi(ver: sem.version, ids: compacted)
+    .map { (sem: Semantic, ids: [Semantic.Identifier]) -> Semantic in
+        Semantic.vi(ver: sem.version, ids: ids)
     }
     .eraseToAnyParser()
 }
