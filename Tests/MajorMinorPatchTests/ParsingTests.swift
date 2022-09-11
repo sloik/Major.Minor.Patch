@@ -27,7 +27,7 @@ final class ParsingTests: XCTestCase {
                 .setInput( "1.1.1")
                 .setExpected( .v(ver: .init(major: 1, minor: 1, patch: 1)) ),
 
-            // version and idetifiers
+            // version and identifiers
             newCase()
                 .setInput( "1.0.0-alpha")
                 .setExpected( .vi(ver: ver_1_0_0.version, ids: [.alpha]) ),
