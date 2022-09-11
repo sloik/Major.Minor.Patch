@@ -58,6 +58,17 @@ extension Semantic {
     }
 }
 
+
 func parse(string: String) -> Semantic? {
-    .none
+
+    let semVer: Semantic?
+
+    do {
+        semVer = try Semantic.parser.parse(string)
+    } catch {
+        print("🛤 Unable to parse to version!")
+        semVer = .none
+    }
+
+    return semVer
 }
