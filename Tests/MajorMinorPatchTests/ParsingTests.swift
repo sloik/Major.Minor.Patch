@@ -88,6 +88,58 @@ final class ParsingTests: XCTestCase {
                     )
                 ),
 
+            // version and ids and metadata
+            newCase()
+                .setInput( "1.0.0-alpha+001" )
+                .setExpected( .vib(ver: ver_1_0_0.version, ids: [.alpha], build: [ .init(string: "001")! ] ) ),
+            newCase()
+                .setInput( "1.0.0-beta+20130313144700" )
+                .setExpected( .vib(ver: ver_1_0_0.version, ids: [.beta], build: [ .init(string: "20130313144700")! ]) ),
+            newCase()
+                .setInput( "1.0.0-alpha.beta+exp.sha.5114f85" )
+                .setExpected(
+                    .vib(
+                        ver: ver_1_0_0.version,
+                        ids: [.alpha, .beta],
+                        build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0-alpha.1+001" )
+                .setExpected(
+                    .vib(
+                        ver: ver_1_0_0.version,
+                        ids: [.alpha, .init(string: "1")!],
+                        build: [ .init(string: "001")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0-0.3.7+20130313144700" )
+                .setExpected(
+                    .vib(
+                        ver: ver_1_0_0.version,
+                        ids: [.init(string: "0")!, .init(string: "3")!, .init(string: "7")!],
+                        build:  [ .init(string: "20130313144700")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0-0+exp.sha.5114f85" )
+                .setExpected(
+                    .vib(
+                        ver: ver_1_0_0.version,
+                        ids: [.init(string: "0")!],
+                        build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0-alpha.0+exp.sha.5114f85" )
+                .setExpected(
+                    .vib(
+                        ver: ver_1_0_0.version,
+                        ids: [.alpha, .init(string: "0")!],
+                        build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
+                    )
+                ),
         ]
 
         // Act & Assert
@@ -111,6 +163,30 @@ final class ParsingTests: XCTestCase {
                     line: test.line
                 )
             }
+
+            // When comparing for equality specification says
+            // that build metadata should be ignored. But in this
+            // case we need to check if parsing works.
+            if let expectedMetadata = test.expected.metadata {
+
+                XCTAssertNotNil(
+                    result?.metadata,
+                    "Did not parse expected metadata for: \"\(test.input)\"",
+                    file: test.file,
+                    line: test.line
+                )
+
+                if let resultMetadata = result?.metadata {
+                    XCTAssertEqual(
+                        resultMetadata,
+                        expectedMetadata,
+                        file: test.file,
+                        line: test.line
+                    )
+                }
+
+            }
+
         }
     }
 
