@@ -68,6 +68,26 @@ extension Semantic.Identifier {
     }
 }
 
+extension Semantic.Metadata {
+    static var parser: AnyParser<Substring, Semantic.Metadata> {
+
+        Prefix(
+            while: { $0 != "." }
+        )
+        .map(
+            AnyConversion(
+                apply: { (sub: Substring) -> Semantic.Metadata? in
+                    Semantic.Metadata(string: String(sub))
+                },
+                unapply: { (metadata: Semantic.Metadata) -> Substring? in
+                    metadata.value[...]
+                }
+            )
+        )
+        .eraseToAnyParser()
+    }
+}
+
 var versionParserWithIdentifiers: AnyParser<Substring, Semantic> {
 
     Parse {
