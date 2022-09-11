@@ -88,6 +88,23 @@ extension Semantic.Metadata {
     }
 }
 
+var versionParserWithBuildMetadata: AnyParser<Substring, Semantic> {
+
+    Parse {
+        versionParser
+        "+"
+        Many {
+            Semantic.Metadata.parser
+        } separator: {
+            "."
+        }
+    }
+    .map { (sem: Semantic, metadata: [Semantic.Metadata]) -> Semantic in
+        Semantic.vb(ver: sem.version, build: metadata)
+    }
+    .eraseToAnyParser()
+}
+
 var versionParserWithIdentifiers: AnyParser<Substring, Semantic> {
 
     Parse {
