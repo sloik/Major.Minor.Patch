@@ -10,6 +10,15 @@ extension Semantic.Major {
         }
         .eraseToAnyParser()
     }
+
+    static var printer: AnyParserPrinter<Substring, Semantic.Major> {
+
+        parser
+            .printing {  (major: Semantic.Major, substring: inout Substring) -> Void in
+                substring.append(contentsOf: String(major.rawValue))
+            }
+            .eraseToAnyParserPrinter()
+    }
 }
 
 extension Semantic.Minor {
@@ -20,6 +29,15 @@ extension Semantic.Minor {
         }
         .eraseToAnyParser()
     }
+
+    static var printer: AnyParserPrinter<Substring, Semantic.Minor> {
+
+        parser
+            .printing {  (minor: Semantic.Minor, substring: inout Substring) -> Void in
+                substring.append(contentsOf: String(minor.rawValue))
+            }
+            .eraseToAnyParserPrinter()
+    }
 }
 
 extension Semantic.Patch {
@@ -29,6 +47,15 @@ extension Semantic.Patch {
             UInt.parser(of: Substring.self, radix: 10)
         }
         .eraseToAnyParser()
+    }
+
+    static var printer: AnyParserPrinter<Substring, Semantic.Patch> {
+
+        parser
+            .printing {  (patch: Semantic.Patch, substring: inout Substring) -> Void in
+                substring.append(contentsOf: String(patch.rawValue))
+            }
+            .eraseToAnyParserPrinter()
     }
 }
 
