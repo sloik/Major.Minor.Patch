@@ -10,10 +10,10 @@ public enum Semantic {
     case vi(ver: Version, ids: [Identifier])
 
     /// Contains version and build metadata.
-    case vb(ver: Version, build: [Build])
+    case vb(ver: Version, build: [Metadata])
 
     /// Contains version, identifiers and build metadata.
-    case vib(ver: Version, ids: [Identifier], build: [Build])
+    case vib(ver: Version, ids: [Identifier], build: [Metadata])
 }
 
 // MARK: - Comparable
