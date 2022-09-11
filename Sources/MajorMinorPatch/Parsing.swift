@@ -68,6 +68,43 @@ extension Semantic.Identifier {
     }
 }
 
+extension Semantic.Metadata {
+    static var parser: AnyParser<Substring, Semantic.Metadata> {
+
+        Prefix(
+            while: { $0 != "." }
+        )
+        .map(
+            AnyConversion(
+                apply: { (sub: Substring) -> Semantic.Metadata? in
+                    Semantic.Metadata(string: String(sub))
+                },
+                unapply: { (metadata: Semantic.Metadata) -> Substring? in
+                    metadata.value[...]
+                }
+            )
+        )
+        .eraseToAnyParser()
+    }
+}
+
+var versionParserWithBuildMetadata: AnyParser<Substring, Semantic> {
+
+    Parse {
+        versionParser
+        "+"
+        Many {
+            Semantic.Metadata.parser
+        } separator: {
+            "."
+        }
+    }
+    .map { (sem: Semantic, metadata: [Semantic.Metadata]) -> Semantic in
+        Semantic.vb(ver: sem.version, build: metadata)
+    }
+    .eraseToAnyParser()
+}
+
 var versionParserWithIdentifiers: AnyParser<Substring, Semantic> {
 
     Parse {
@@ -92,6 +129,7 @@ var versionParser: AnyParser<Substring, Semantic> {
 extension Semantic {
     static var parser: AnyParser<Substring, Semantic> {
         OneOf {
+            versionParserWithBuildMetadata
             versionParserWithIdentifiers
             versionParser
         }

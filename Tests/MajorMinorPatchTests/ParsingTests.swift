@@ -15,30 +15,30 @@ final class ParsingTests: XCTestCase {
 
             // just version
             newCase()
-                .setInput( "1.0.0")
+                .setInput( "1.0.0" )
                 .setExpected( .v(ver: .init(major: 1, minor: 0, patch: 0)) ),
             newCase()
-                .setInput( "1.0.1")
+                .setInput( "1.0.1" )
                 .setExpected( .v(ver: .init(major: 1, minor: 0, patch: 1)) ),
             newCase()
-                .setInput( "1.1.0")
+                .setInput( "1.1.0" )
                 .setExpected( .v(ver: .init(major: 1, minor: 1, patch: 0)) ),
             newCase()
-                .setInput( "1.1.1")
+                .setInput( "1.1.1" )
                 .setExpected( .v(ver: .init(major: 1, minor: 1, patch: 1)) ),
 
             // version and identifiers
             newCase()
-                .setInput( "1.0.0-alpha")
+                .setInput( "1.0.0-alpha" )
                 .setExpected( .vi(ver: ver_1_0_0.version, ids: [.alpha]) ),
             newCase()
-                .setInput( "1.0.0-beta")
+                .setInput( "1.0.0-beta" )
                 .setExpected( .vi(ver: ver_1_0_0.version, ids: [.beta]) ),
             newCase()
-                .setInput( "1.0.0-alpha.beta")
+                .setInput( "1.0.0-alpha.beta" )
                 .setExpected( .vi(ver: ver_1_0_0.version, ids: [.alpha, .beta]) ),
             newCase()
-                .setInput( "1.0.0-alpha.1")
+                .setInput( "1.0.0-alpha.1" )
                 .setExpected(
                     .vi(
                         ver: ver_1_0_0.version,
@@ -46,7 +46,7 @@ final class ParsingTests: XCTestCase {
                     )
                 ),
             newCase()
-                .setInput( "1.0.0-0.3.7")
+                .setInput( "1.0.0-0.3.7" )
                 .setExpected(
                     .vi(
                         ver: ver_1_0_0.version,
@@ -54,11 +54,37 @@ final class ParsingTests: XCTestCase {
                     )
                 ),
             newCase()
-                .setInput( "1.0.0-0")
+                .setInput( "1.0.0-0" )
                 .setExpected(
                     .vi(
                         ver: ver_1_0_0.version,
                         ids: [.init(string: "0")!]
+                    )
+                ),
+
+            // version and metadata
+            newCase()
+                .setInput( "1.0.0+001" )
+                .setExpected(
+                    .vb(
+                        ver: ver_1_0_0.version,
+                        build: [ .init(string: "001")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0+20130313144700" )
+                .setExpected(
+                    .vb(
+                        ver: ver_1_0_0.version,
+                        build: [ .init(string: "20130313144700")! ]
+                    )
+                ),
+            newCase()
+                .setInput( "1.0.0+exp.sha.5114f85" )
+                .setExpected(
+                    .vb(
+                        ver: ver_1_0_0.version,
+                        build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
                     )
                 ),
 

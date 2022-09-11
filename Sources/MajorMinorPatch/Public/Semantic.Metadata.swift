@@ -3,9 +3,9 @@ import Foundation
 
 extension Semantic {
 
-    public struct Build: Comparable {
+    public struct Metadata: Comparable {
 
-        public static func < (lhs: Semantic.Build, rhs: Semantic.Build) -> Bool {
+        public static func < (lhs: Semantic.Metadata, rhs: Semantic.Metadata) -> Bool {
             lhs.value < rhs.value
         }
 
