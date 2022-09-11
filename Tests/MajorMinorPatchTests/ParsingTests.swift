@@ -131,6 +131,15 @@ final class ParsingTests: XCTestCase {
                         build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
                     )
                 ),
+            newCase()
+                .setInput( "1.0.0-alpha.0+exp.sha.5114f85" )
+                .setExpected(
+                    .vib(
+                        ver: ver_1_0_0.version,
+                        ids: [.alpha, .init(string: "0")!],
+                        build: [ .init(string: "exp")!, .init(string: "sha")!, .init(string: "5114f85")! ]
+                    )
+                ),
         ]
 
         // Act & Assert
