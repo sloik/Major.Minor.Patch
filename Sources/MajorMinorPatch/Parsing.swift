@@ -10,15 +10,6 @@ extension Semantic.Major {
         }
         .eraseToAnyParser()
     }
-
-    static var printer: AnyParserPrinter<Substring, Semantic.Major> {
-
-        parser
-            .printing {  (major: Semantic.Major, substring: inout Substring) -> Void in
-                substring.append(contentsOf: String(major.rawValue))
-            }
-            .eraseToAnyParserPrinter()
-    }
 }
 
 extension Semantic.Minor {
