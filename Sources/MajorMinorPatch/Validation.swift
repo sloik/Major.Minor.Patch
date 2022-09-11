@@ -31,8 +31,8 @@ func isValidIdentifier(_ string: String) -> Bool {
 
     //  Numeric identifiers MUST NOT include leading zeroes.
     let isNumeric = string.unicodeScalars.allSatisfy( digits10.contains )
-    if isNumeric && string.starts(with: "0") {
-        return false
+    if isNumeric && string.count > 1 {
+        return string.starts(with: "0") == false
     }
 
     return true
