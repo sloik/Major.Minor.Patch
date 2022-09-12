@@ -74,4 +74,23 @@ final class PrintingTests: XCTestCase {
         )
     }
 
+    func test_identifier_printing() {
+
+        XCTAssertEqual(ver_2_1_1_alpha.identifiers?.first?.description, "alpha")
+        XCTAssertEqual(
+            Semantic.Identifier("alpha"),
+            .alpha
+        )
+
+    }
+
+    func test_metadata_printing() {
+
+        XCTAssertEqual(ver_0_0_0_b1.metadata?.first?.description, "1")
+        XCTAssertEqual(
+            Semantic.Metadata("exp"),
+            .init(string: "exp")
+        )
+    }
+
 }
