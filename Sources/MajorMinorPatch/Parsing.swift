@@ -171,7 +171,6 @@ func parse(string: String) -> Semantic? {
     do {
         semVer = try Semantic.parser.parse(string)
     } catch {
-        print("🛤 Unable to parse to version! (\(string))", error)
         semVer = .none
     }
 

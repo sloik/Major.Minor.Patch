@@ -23,23 +23,18 @@ extension Semantic: Comparable, Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
         case ( .v, .v ):
-            print("🛤", #function, #line)
             return lhs.version == rhs.version
 
         case ( .vi, .vi):
-            print("🛤", #function, #line)
             return lhs.version == rhs.version && lhs.identifiers! == rhs.identifiers!
 
         case ( .vb, .vb ):
-            print("🛤", #function, #line)
             return lhs.version == rhs.version
 
         case ( .vib, .vib):
-            print("🛤", #function, #line)
             return lhs.version == rhs.version && lhs.identifiers! == rhs.identifiers!
 
         default:
-            print("🛤", #function, #line)
             return false
         }
     }
@@ -49,19 +44,15 @@ extension Semantic: Comparable, Equatable {
         switch (lhs, rhs) {
 
         case ( .v, .v ):
-            print("🛤", #function, #line)
             return lhs.version < rhs.version
 
         case ( .v, .vi ):
-            print("🛤", #function, #line)
             return lhs.version < rhs.version
 
         case ( .vi, .v ):
             return true
 
         case ( .vi,  .vi ):
-            print("🛤", #function, #line)
-
             return lhs.version == rhs.version
                 ? lhs.identifiers! < rhs.identifiers!
                 : lhs.version < rhs.version
@@ -73,7 +64,6 @@ extension Semantic: Comparable, Equatable {
             return Semantic.vi(ver: lv, ids: li) < Semantic.vi(ver: rv, ids: ri)
             
         default:
-            print("🛤", #function, #line)
             return false
         }
     }
