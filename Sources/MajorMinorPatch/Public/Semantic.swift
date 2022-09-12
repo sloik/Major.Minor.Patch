@@ -16,60 +16,8 @@ public enum Semantic {
     case vib(ver: Version, ids: [Identifier], build: [Metadata])
 }
 
-// MARK: - Comparable
 
-extension Semantic: Comparable, Equatable {
-
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        switch (lhs, rhs) {
-        case ( .v, .v ):
-            return lhs.version == rhs.version
-
-        case ( .vi, .vi):
-            return lhs.version == rhs.version && lhs.identifiers! == rhs.identifiers!
-
-        case ( .vb, .vb ):
-            return lhs.version == rhs.version
-
-        case ( .vib, .vib):
-            return lhs.version == rhs.version && lhs.identifiers! == rhs.identifiers!
-
-        default:
-            return false
-        }
-    }
-
-    public static func < (lhs: Semantic, rhs: Semantic) -> Bool {
-
-        switch (lhs, rhs) {
-
-        case ( .v, .v ):
-            return lhs.version < rhs.version
-
-        case ( .v, .vi ):
-            return lhs.version < rhs.version
-
-        case ( .vi, .v ):
-            return true
-
-        case ( .vi,  .vi ):
-            return lhs.version == rhs.version
-                ? lhs.identifiers! < rhs.identifiers!
-                : lhs.version < rhs.version
-
-        /// Build metadata MUST be ignored when determining version precedence.
-        /// Thus two versions that differ only in the build metadata,
-        /// have the same precedence
-        case ( .vib(let lv, let li, _), .vib(let rv, let ri, _)):
-            return Semantic.vi(ver: lv, ids: li) < Semantic.vi(ver: rv, ids: ri)
-            
-        default:
-            return false
-        }
-    }
-}
-
-// MARK: - API
+// MARK: - Nicer API
 
 public extension Semantic {
 
@@ -129,40 +77,5 @@ public extension Semantic {
     /// 1.0.0
     static var ver_1_0_0: Semantic {
         .v(ver: Version(major: 1, minor: 0, patch: 0))
-    }
-}
-
-// MARK: - LosslessStringConvertible
-
-extension Semantic: LosslessStringConvertible {
-
-    public var description: String {
-        switch self {
-
-        case .v(let ver):
-            return ver.description
-
-        case .vi(let ver, let ids):
-            let idsString: String = ids.map( \.description ).joined(separator: ".")
-            return ver.description + "-" + idsString
-
-        case .vb(let ver, let build):
-            let metadataString: String = build.map( \.description ).joined(separator: ".")
-            return ver.description + "+" + metadataString
-
-        case .vib(let ver, let ids, let build):
-            let idsString: String = ids.map( \.description ).joined(separator: ".")
-            let metadataString: String = build.map( \.description ).joined(separator: ".")
-
-            return ver.description + "-" + idsString + "+" + metadataString
-        }
-    }
-
-    public init?(_ description: String) {
-        do {
-            self = try Self.parser.parse(description[...])
-        } catch {
-            return nil
-        }
     }
 }
